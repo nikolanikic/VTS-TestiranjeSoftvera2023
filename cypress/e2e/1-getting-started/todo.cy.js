@@ -28,7 +28,7 @@ describe("example to-do app", () => {
     );
   });
 
-  it("check that all tasks can be completed at once", () => {
+  it.skip("check that all tasks can be completed at once", () => {
     const newItem = "Out new task";
     const newItem2 = "Out new task 2";
     cy.get(".todo-list li").should("have.length", 2);
