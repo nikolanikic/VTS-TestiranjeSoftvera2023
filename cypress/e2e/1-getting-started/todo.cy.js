@@ -88,6 +88,14 @@ describe("example to-do app", () => {
       .should("have.text", newItem);
   });
 
+  it("check if electric bill is checked", () => {
+    cy.get(':nth-child(1) > .view > label')
+    cy.contains("Pay electric bill")
+      .parent()
+      .find("input[type=checkbox]")
+      .should('have.prop', 'checked', false);
+  })
+
   it("can check off an item as completed", () => {
     // In addition to using the `get` command to get an element by selector,
     // we can also use the `contains` command to get an element by its contents.
@@ -170,5 +178,27 @@ describe("example to-do app", () => {
       // Finally, make sure that the clear button no longer exists.
       cy.contains("Clear completed").should("not.exist");
     });
+
+    it("can add a new task and check it", () => {
+      const testText = "This is a test";
+      cy.get('[data-test="new-todo"]')
+        .type(`${testText}{enter}`);
+
+      cy.contains(`${testText}`)
+        .parent()
+        .find("input[type=checkbox]")
+        .click();
+    })
+
+    it("can destroy all todos", () => {
+      cy.get('.todo-list li')
+        .each(($el) => {
+          cy.wrap($el)
+            .find('.view .destroy')
+            .invoke('show')
+            .click();
+        });
+    })
+
   });
 });
