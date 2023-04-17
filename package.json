@@ -16,11 +16,9 @@
     "url": "https://github.com/nikolanikic/VTS-TestiranjeSoftvera2023/issues"
   },
   "homepage": "https://github.com/nikolanikic/VTS-TestiranjeSoftvera2023#readme",
-<<<<<<< Updated upstream
-  "dependencies": {
-=======
+
   "devDependencies": {
->>>>>>> Stashed changes
+
     "cypress": "^12.9.0"
   }
 }
