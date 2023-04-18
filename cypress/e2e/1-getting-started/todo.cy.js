@@ -20,37 +20,35 @@ describe("example to-do app", () => {
     cy.visit("https://example.cypress.io/todo");
   });
 
-  it("this is our first test for VTS vezbe", () => {
+  it("some random test", () => {
     cy.get("h1").should("have.text", "todos");
-    cy.get(".info > :nth-child(1)").should(
-      "have.text",
-      "Double-click to edit a todo"
-    );
+    cy.get('.info > :nth-child(1)').should("have.text", "Double click to edit a todo");
   });
 
-  it.skip("check that all tasks can be completed at once", () => {
-    const newItem = "Out new task";
-    const newItem2 = "Out new task 2";
+  it("check if all task can be completed at once", () => {
+    const newItem = "Our new task";
     cy.get(".todo-list li").should("have.length", 2);
 
     cy.get("[data-test=new-todo]").type(`${newItem}{enter}`);
     cy.get(".todo-list li")
-      .should("have.length", 3)
-      .last()
-      .should("have.text", newItem);
-
-    cy.get("[data-test=new-todo]").type(`${newItem2}{enter}`);
+    .should("have.length", 3)
+    .last()
+    .should("have.text", newItem);
 
     cy.wait(3000);
 
-    cy.get('[for="toggle-all"]').click();
+    cy.get('[for="toggle-all"]').click()
 
-    cy.contains("Pay electric bill")
-      .parents("li")
-      .should("have.class", "completed");
+    cy.contains("Pay electric bill").parents("li").should("have.class", "completed");
     cy.contains("Walk the dog").parents("li").should("have.class", "completed");
     cy.contains(newItem).parents("li").should("have.class", "completed");
   });
+
+  it("this is our first test for VTS vezbe", () => {
+    cy.get('h1').should("have.text", "todos");
+  });
+
+
   it("displays two todo items by default", () => {
     // We use the `cy.get()` command to get all elements that match the selector.
     // Then, we use `should` to assert that there are two matched items,
@@ -67,7 +65,7 @@ describe("example to-do app", () => {
 
   it("can add new todo items", () => {
     // We'll store our item text in a variable so we can reuse it
-    const newItem = "Feed the cat";
+    const newItem = "Drive a car";
 
     // Let's get the input element and use the `type` command to
     // input our new list item. After typing the content of our item,
