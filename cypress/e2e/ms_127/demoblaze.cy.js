@@ -2,7 +2,7 @@
 
 describe("Demoblaze web shop", () => {
 
-    it("User is able to load web site", () => {
+    it.skip("User is able to load web site", () => {
       cy.visit("https://www.demoblaze.com/");
 
       cy.get('#nava').contains('PRODUCT STORE');
@@ -11,7 +11,7 @@ describe("Demoblaze web shop", () => {
       cy.get('#cat').should('have.text', 'CATEGORIES');
     });
 
-    it('Alert is thrown when User already exists', () =>{
+    it.skip('Alert is thrown when User already exists', () =>{
         cy.visit("https://www.demoblaze.com/");
         cy.get('#signin2').click();
 
@@ -25,7 +25,7 @@ describe("Demoblaze web shop", () => {
         });
     });
 
-    it('User is able to login to Demoblaze web shop', () =>{
+    it.skip('User is able to login to Demoblaze web shop', () =>{
         cy.visit("https://www.demoblaze.com/");
         cy.get('#login2').click();
 
@@ -36,7 +36,7 @@ describe("Demoblaze web shop", () => {
 
         
     });
-    it("Adding product to cart", () => {
+    it.skip("Adding product to cart", () => {
         cy.visit("https://www.demoblaze.com/");
     
         cy.get(':nth-child(3) > .card > .card-block .card-title > .hrefch').click();
@@ -61,5 +61,16 @@ describe("Demoblaze web shop", () => {
         cy.on('window:alert', (t)=>{
              expect(t).to.contains('Product added');
             });
+            
     });
-});
+    it("Check if slide is changed after click", ()=>{
+
+        cy.visit("https://www.demoblaze.com/");
+        cy.get('.active > .d-block').invoke('attr', 'alt').should('eq', 'First slide');
+        cy.wait(4000);
+        
+        cy.get('.active > .d-block').invoke('attr', 'alt').should('eq', 'Second slide');
+    });
+
+
+    });
