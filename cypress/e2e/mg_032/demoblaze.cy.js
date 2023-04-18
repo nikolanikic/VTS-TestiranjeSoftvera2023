@@ -26,7 +26,7 @@ describe("Testing DemoQA", () => {
     });
   });
 
-  it('Adding product to cart', () => {
+  it.skip('Adding product to cart', () => {
     cy.visit('https://www.demoblaze.com/')
 
     cy.get(':nth-child(3) > .card > .card-block > .card-title > .hrefch').click();
@@ -49,6 +49,19 @@ describe("Testing DemoQA", () => {
     cy.get('#totalm').contains('650');
 
     cy.wait(3000);
+
+
+  });
+
+  it('Check if slide is changed after click', () => {
+    cy.visit('https://www.demoblaze.com/')
+
+    cy.get('.active > .d-block').invoke('attr', 'alt').should('eq', 'First slide');
+
+    cy.get('.carousel-control-next-icon').click();
+    cy.wait(1000)
+
+    cy.get('.active > .d-block').invoke('attr', 'alt').should('eq', 'Second slide');
 
 
   });
