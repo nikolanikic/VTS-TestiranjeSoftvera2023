@@ -26,6 +26,9 @@ describe("example to-do app", () => {
       "have.text",
       "Double-click to edit a todo"
     );
+    cy.get('.info > :nth-child(2)').should("have.text","Forked from TodoMVC");
+    
+
   });
 
   it.skip("check that all tasks can be completed at once", () => {
