@@ -26,34 +26,36 @@ describe("Testing DemoQA", () => {
     });
   });
 
-  it.skip('Adding product to cart', () => {
-    cy.visit('https://www.demoblaze.com/')
 
-    cy.get(':nth-child(3) > .card > .card-block > .card-title > .hrefch').click();
+  it.skip("Adding product to cart", () => {
+    cy.visit("https://www.demoblaze.com/");
 
+    cy.get(':nth-child(3) > .card > .card-block .card-title > .hrefch').click();
     cy.get('.name').contains('Nexus 6');
-
     cy.get('.col-sm-12 > .btn').click();
-
-    /*
-    cy.on('window:alert', (t) => {
-      expect(t).to.contains('Product added');
-    })
-    */
 
     cy.get('#cartur').click();
     cy.get('#totalp').should('have.text', '650');
     cy.get('.col-lg-1 > .btn').click();
 
-    
     cy.get('#totalm').contains('650');
+    cy.get('#name').clear().type('Milan Govedarovic');
+    cy.get('#country').clear().type('Srbija');
+    cy.get('#city').clear().type('Velika Plana');
+    cy.get('#card').clear().type('2599863516');
+    cy.get('#month').clear().type('10');
+    cy.get('#year').clear().type('22');
 
-    cy.wait(3000);
+    cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click();
+    cy.get('.confirm').click();
+    cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-secondary').click();
+    cy.on('window:alert', (t)=>{
+         expect(t).to.contains('Product added');
+        });
+        
+});
 
-
-  });
-
-  it('Check if slide is changed after click', () => {
+  it.skip('Check if slide is changed after click', () => {
     cy.visit('https://www.demoblaze.com/')
 
     cy.get('.active > .d-block').invoke('attr', 'alt').should('eq', 'First slide');
