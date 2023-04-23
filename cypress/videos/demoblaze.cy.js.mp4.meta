@@ -1,0 +1,16 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=0
+END=null
+title=Demoblaze web shop User is able to load Demoblaze web shop
+[CHAPTER]
+TIMEBASE=1/1000
+START=0
+END=null
+title=Demoblaze web shop Alert is thrown when User already exists
+[CHAPTER]
+TIMEBASE=1/1000
+START=9627
+END=17856
+title=Demoblaze web shop User is able to login to Demoblaze web shop
