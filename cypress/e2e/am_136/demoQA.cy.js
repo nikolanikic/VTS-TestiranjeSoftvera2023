@@ -38,6 +38,9 @@ describe("Testing DemoQA", () => {
     cy.get('.col-md-6 > :nth-child(2) > :nth-child(3)').click();
     cy.get('.text-success').should('have.text','Impressive');
 
+    //provera da je no radio button disabled
+    cy.get('.custom-control.disabled').should('be.disabled');
+
 
   });
 
