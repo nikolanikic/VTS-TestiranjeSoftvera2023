@@ -4,7 +4,8 @@
   "description": "Testiranje Softvera",
   "main": "cypress.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:run:nn_000": "cypress run --spec ./cypress/e2e/nn_000/demoblaze.cy.js"
   },
   "repository": {
     "type": "git",
