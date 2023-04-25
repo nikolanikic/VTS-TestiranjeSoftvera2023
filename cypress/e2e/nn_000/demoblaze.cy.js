@@ -1,45 +1,45 @@
 /// <reference types="cypress" />
 
+import HomePage from "../../support/pageObject/demoblaze_nn_000/homePage";
+import LogInPage from "../../support/pageObject/demoblaze_nn_000/logInPage";
+import SignUpPage from "../../support/pageObject/demoblaze_nn_000/signUpPage";
+
 describe("Demoblaze web shop", () => {
 
-  it.skip("User is able to load Demoblaze web shop", () => {
+  const homePage = new HomePage();
+  const signUpPage = new SignUpPage();
+  const logInPage = new LogInPage();
+
+  it("User is able to load Demoblaze web shop", () => {
     cy.visit('https://www.demoblaze.com/');
 
-    cy.get('#nava').contains('PRODUCT STORE');
-
-    cy.get('.active > .nav-link').contains('Home');
-    cy.get('#cat').should('have.text', 'CATEGORIES');
+    homePage.checkLogoText();
+    homePage.checkHomeButtonIsDisplayed();
+    homePage.checkCategoriesMenuIsDisplayed();
   });
 
-  it.skip("Alert is thrown when User already exists", () => {
+  it("Alert is thrown when User already exists", () => {
     cy.visit('https://www.demoblaze.com/');
-    cy.get('#signin2').click();
+    homePage.clikSignUpButton();
 
-    cy.get('#signInModalLabel').should('have.text', 'Sign up');
-    cy.get('#sign-username').type('nikolanikic');
-    cy.get('#sign-password').type('nikolanikic');
-
-    cy.get('#signInModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click({ force: true });
-
+    signUpPage.checkSignUpLabel();
+    signUpPage.populateAndSubmitSignUpForm();
+  
     cy.on('window:alert', (t) => {
       expect(t).to.contains('This user already exist.');
     });
   });
 
-  it.skip('User is able to login to Demoblaze web shop', () => {
+  it('User is able to login to Demoblaze web shop', () => {
     cy.visit('https://www.demoblaze.com/');
-    cy.get('#login2').click();
-
-    cy.get('#logInModalLabel').should('have.text', 'Log in');
-    cy.get('#loginusername').clear().type('nikolanikic', { delay: 1 });
-    cy.get('#loginpassword').clear().type('nikolanikic', { delay: 1 });
-    cy.get('#logInModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click();
+    homePage.clikLogInButton();
+    logInPage.fillAndSubmitLogInForm();
 
     cy.get('#nameofuser').contains('nikolanikic');
 
   });
 
-  it('Check if slide is changed after click', () => {
+  it.skip('Check if slide is changed after click', () => {
     cy.visit('https://www.demoblaze.com/');
 
     cy.get('.active > .d-block').invoke('attr', 'alt').should('eq', 'First slide');
