@@ -11,7 +11,7 @@ describe("Pet Store API", () => {
   
     })
   
-    it("User is able to add new pet to the pet store", () => {
+    it("User is able to find added pet by ID", () => {
   
       cy.findPet(petId);
     })

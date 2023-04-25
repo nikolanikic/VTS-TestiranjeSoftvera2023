@@ -1,44 +1,50 @@
 /// <reference types="cypress" />
 
+import SlideShow from "../../support/pageObject/demoblaze_ms_127/SlideShow";
+import HomePage from "../../support/pageObject/demoblaze_ms_127/homePage";
+import LogInPage from "../../support/pageObject/demoblaze_ms_127/logInPage";
+import SignUpPage from "../../support/pageObject/demoblaze_ms_127/signUpPage";
+
+
+
 describe("Demoblaze web shop", () => {
 
-    it.skip("User is able to load web site", () => {
-      cy.visit("https://www.demoblaze.com/");
+    const homePage = new HomePage();
+    const signUpPage = new SignUpPage();
+    const logInPage = new LogInPage();
+    const slideShow = new SlideShow();
 
-      cy.get('#nava').contains('PRODUCT STORE');
+    it("User is able to load Demoblaze web shop", () => {
+        cy.visit('https://www.demoblaze.com/');
 
-      cy.get('.active > .nav-link').contains('Home');
-      cy.get('#cat').should('have.text', 'CATEGORIES');
+        homePage.checkLogoText();
+        homePage.checkHomeButtonIsDisplayed();
+        homePage.checkCategoriesMenuIsDisplayed();
     });
 
-    it.skip('Alert is thrown when User already exists', () =>{
-        cy.visit("https://www.demoblaze.com/");
-        cy.get('#signin2').click();
+    it("Alert is thrown when User already exists", () => {
+        cy.visit('https://www.demoblaze.com/');
+        homePage.clickSignUpButton();
 
-        cy.get('#signInModalLabel').should('have.text', 'Sign up');
-        cy.get('#sign-username').type('mihajlos');
-        cy.get('#sign-password').type('123456');
-        cy.get('#signInModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click({ force:true});
+        signUpPage.checkSignUpLabel();
+        signUpPage.populateAndSubmitSignUpForm();
 
-        cy.on('window:alert', (t)=>{
+        cy.on('window:alert', (t) => {
             expect(t).to.contains('This user already exist.');
         });
     });
 
-    it.skip('User is able to login to Demoblaze web shop', () =>{
-        cy.visit("https://www.demoblaze.com/");
-        cy.get('#login2').click();
+    it('User is able to login to Demoblaze web shop', () => {
+        cy.visit('https://www.demoblaze.com/');
+        homePage.clickLogInButton();
+        logInPage.fillAndSubmitLogInForm();
 
-        cy.get('#logInModalLabel').should('have.text', 'Log in');
-        cy.get('#loginusername').clear().type('mihajlos');
-        cy.get('#loginpassword').clear().type('123456');
-        cy.get('#logInModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click();
-
-        
     });
+
+
     it.skip("Adding product to cart", () => {
         cy.visit("https://www.demoblaze.com/");
-    
+
         cy.get(':nth-child(3) > .card > .card-block .card-title > .hrefch').click();
         cy.get('.name').contains('Nexus 6');
         cy.get('.col-sm-12 > .btn').click();
@@ -58,19 +64,20 @@ describe("Demoblaze web shop", () => {
         cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click();
         cy.get('.confirm').click();
         cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-secondary').click();
-        cy.on('window:alert', (t)=>{
-             expect(t).to.contains('Product added');
-            });
-            
+        cy.on('window:alert', (t) => {
+            expect(t).to.contains('Product added');
+        });
+
     });
-    it("Check if slide is changed after click", ()=>{
+    it("Check if slide is changed after click", () => {
 
         cy.visit("https://www.demoblaze.com/");
-        cy.get('.active > .d-block').invoke('attr', 'alt').should('eq', 'First slide');
+        slideShow.checkFirstSlide();
         cy.wait(4000);
-        
-        cy.get('.active > .d-block').invoke('attr', 'alt').should('eq', 'Second slide');
-    });
+        slideShow.checkSecondSlide();
 
 
     });
+
+
+});
