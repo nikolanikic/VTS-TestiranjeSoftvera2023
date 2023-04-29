@@ -12,18 +12,29 @@ class HomePage {
         return cy.get('#cat');
     }
 
-    signUpButton(){
+    signUpButton() {
         return cy.get('#signin2');
     }
 
-    loginButton(){
-       return cy.get('#login2');
+    loginButton() {
+        return cy.get('#login2');
     }
 
-    product(){
+    product() {
         return cy.get(':nth-child(3) > .card > .card-block > .card-title > .hrefch');
     }
 
+
+
+    firstSlide() {
+        return cy.get('.active > .d-block');
+    }
+    carouser() {
+        return cy.get('.carousel-control-next-icon');
+    }
+    secondSlide() {
+        return cy.get('.active > .d-block');
+    }
 
 
 
@@ -41,17 +52,34 @@ class HomePage {
     checkCategoriesMenuIsDisplayed() {
         this.categoriesMenu().should('have.text', 'CATEGORIES');
     }
-    clickSignUpButton(){
+    clickSignUpButton() {
         this.signUpButton().click();
     }
-    clickLoginButton(){
+    clickLoginButton() {
         this.loginButton().click();
     }
 
-    clickProduct(){
+    clickProduct() {
         this.product().click();
     }
 
+
+
+
+    checkFirstSlide() {
+        this.firstSlide().invoke('attr', 'alt').should('eq', 'First slide');
+    }
+    clickCarouser() {
+        this.carouser().click();
+    }
+    checkSecondSlide() {
+        this.secondSlide().invoke('attr', 'alt').should('eq', 'Second slide');
+    }
+    checkChange() {
+        this.checkFirstSlide();
+        this.clickCarouser();
+        this.checkSecondSlide();
+    }
 
 }
 export default HomePage;
