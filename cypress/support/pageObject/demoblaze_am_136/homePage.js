@@ -20,6 +20,10 @@ class HomePage {
        return cy.get('#login2');
     }
 
+    product(){
+        return cy.get(':nth-child(3) > .card > .card-block > .card-title > .hrefch');
+    }
+
 
 
 
@@ -42,6 +46,10 @@ class HomePage {
     }
     clickLoginButton(){
         this.loginButton().click();
+    }
+
+    clickProduct(){
+        this.product().click();
     }
 
 
