@@ -97,3 +97,11 @@ Cypress.Commands.add('deleteFakePet',(petId)=>{
         expect(response.status).to.eq(404);
     })
 });
+
+Cypress.Commands.add('findPetAndSaveToFile',(petId)=>{
+    cy.request('GET','https://petstore.swagger.io/v2/pet/'+petId).then((response) =>{
+        expect(response.status).to.eq(200);
+        expect(response.body).to.have.property('id', petId);
+        cy.writeFile('cypress/fixtures/pet.json', response.body);
+    })
+});

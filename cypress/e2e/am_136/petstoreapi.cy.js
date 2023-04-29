@@ -12,7 +12,8 @@ describe("Pet store api", () => {
     });
 
     it('User is able to find added pet by ID',() =>{
-        cy.findPet(petId);
+        cy.findPetAndSaveToFile(petId);
+        
     });
     it('User is able to update existing pet',() =>{
         cy.updatePet(petId,petNewName,photoUrl);
