@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/nikolanikic/VTS-TestiranjeSoftvera2023#readme",
   "devDependencies": {
-    "cypress": "^12.10.0"
+    "cypress": "^12.11.0"
   }
 }
