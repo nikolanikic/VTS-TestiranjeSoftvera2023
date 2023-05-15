@@ -27,30 +27,31 @@ describe("example to-do app", () => {
       "Double-click to edit a todo"
     );
   });
+//Druge vezbe
+it.skip("check that all tasks can be completed at once", () => {
+  const newItem = "Out new task";
+  const newItem2 = "Out new task 2";
+  cy.get(".todo-list li").should("have.length", 2);
 
-  it.skip("check that all tasks can be completed at once", () => {
-    const newItem = "Out new task";
-    const newItem2 = "Out new task 2";
-    cy.get(".todo-list li").should("have.length", 2);
+  cy.get("[data-test=new-todo]").type(`${newItem}{enter}`);
+  cy.get(".todo-list li")
+    .should("have.length", 3)
+    .last()
+    .should("have.text", newItem);
 
-    cy.get("[data-test=new-todo]").type(`${newItem}{enter}`);
-    cy.get(".todo-list li")
-      .should("have.length", 3)
-      .last()
-      .should("have.text", newItem);
+  cy.get("[data-test=new-todo]").type(`${newItem2}{enter}`);
 
-    cy.get("[data-test=new-todo]").type(`${newItem2}{enter}`);
+  cy.wait(3000);
 
-    cy.wait(3000);
+  cy.get('[for="toggle-all"]').click();
 
-    cy.get('[for="toggle-all"]').click();
-
-    cy.contains("Pay electric bill")
-      .parents("li")
-      .should("have.class", "completed");
-    cy.contains("Walk the dog").parents("li").should("have.class", "completed");
-    cy.contains(newItem).parents("li").should("have.class", "completed");
-  });
+  cy.contains("Pay electric bill")
+    .parents("li")
+    .should("have.class", "completed");
+  cy.contains("Walk the dog").parents("li").should("have.class", "completed");
+  cy.contains(newItem).parents("li").should("have.class", "completed");
+});
+  //Druge vezbe
   it("displays two todo items by default", () => {
     // We use the `cy.get()` command to get all elements that match the selector.
     // Then, we use `should` to assert that there are two matched items,
