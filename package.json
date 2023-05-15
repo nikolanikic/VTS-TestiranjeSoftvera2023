@@ -5,7 +5,7 @@
   "main": "cypress.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cy:run:am_136":"cypress run --spec ./cypress/e2e/am_136/demoblaze.cy.js"
+    "cy:run:am_136": "cypress run --spec ./cypress/e2e/am_136/demoblaze.cy.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,12 @@
   "homepage": "https://github.com/nikolanikic/VTS-TestiranjeSoftvera2023#readme",
   "dependencies": {
     "cypress": "^12.9.0"
+  },
+  "devDependencies": {
+    "cypress-cucumber-preprocessor": "^4.3.1"
+  },
+  "cypress-cucumber-preprocessor":{
+    "nonGlobalStepDefinitions": true,
+    "stepDefinitions": "./cypress/e2e/"
   }
 }
