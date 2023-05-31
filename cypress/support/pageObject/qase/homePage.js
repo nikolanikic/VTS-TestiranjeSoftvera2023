@@ -24,8 +24,16 @@ class HomePage {
         return cy.get('#createButton');
     }
 
-    dotsForProject(projectName) {
-        cy.get('.project-row').contains(projectName);
+    dotsForProject() {
+        return cy.get(':nth-child(2) > .text-end > .dropdown > .btn > .fa');
+    }
+
+    deleteButton() {
+        return cy.get(':nth-child(2) > .text-end > .dropdown > .dropdown-menu > :nth-child(2) > .Wtd_FE');
+    }
+
+    deleteButtonModal() {
+        return cy.get('.b_jd28 > .ZwgkIF');
     }
 
     verifyUserIsOnHomePage() {
@@ -47,9 +55,14 @@ class HomePage {
         cy.contains(projectName);
     }
 
-    deleteProjectByName(projectName) {
-        this.dotsForProject(projectName).click();
-        cy.contains('Delete').click();
+    deleteProjectByName() {
+        this.dotsForProject().click();
+        this.deleteButton().click();
+        this.deleteButtonModal().click();
+    }
+
+    verifyProjectIsDeletedByName(projectName){
+        cy.contains(projectName).should('not.exist');
     }
 }
 

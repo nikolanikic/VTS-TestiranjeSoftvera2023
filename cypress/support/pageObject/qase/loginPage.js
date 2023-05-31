@@ -1,15 +1,15 @@
 class LoginPage {
 
     emailInputField() {
-        return cy.get('#inputEmail');
+        return cy.get('[name="email"]');
     }
 
     passwordInputField(){
-        return cy.get('#inputPassword');
+        return cy.get('[name="password"]');
     }
 
     loginButton(){
-        return cy.get('#btnLogin');
+        return cy.get('[type="submit"]');
     }
 
     verifyUserIsOnLoginPage(){
