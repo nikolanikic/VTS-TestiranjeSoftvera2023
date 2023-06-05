@@ -24,6 +24,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+import { expect } from "chai";
+
 Cypress.Commands.add('addPet',(petId,petName,photoUrl) =>{
     cy.request('POST', 'https://petstore.swagger.io/v2/pet', {
         "id": petId,
@@ -105,3 +107,15 @@ Cypress.Commands.add('findPetAndSaveToFile',(petId)=>{
         cy.writeFile('cypress/fixtures/pet.json', response.body);
     })
 });
+
+Cypress.Commands.add('deleteProjectByCode',(projectCode,token) =>{
+    cy.request({
+        method: "DELETE",
+        url: 'https://api.qase.io/v1/project/TA' + projectCode,
+        headers:{
+            Token: token
+        }
+    }).then((response)=>{
+        expect(response.status).to.eq(200);
+    })
+})

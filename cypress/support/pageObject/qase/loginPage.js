@@ -1,12 +1,12 @@
 class LoginPage {
     emailInputField() {
-        return cy.get('#inputEmail');
+        return cy.get(':nth-child(1) > .NgMoob > .YDBDJ5');
     }
     passwordInputField() {
-        return cy.get('#inputPassword');
+        return cy.get(':nth-child(2) > .NgMoob > .YDBDJ5');
     }
     loginButton() {
-        return cy.get('#btnLogin');
+        return cy.get('.j4xaa7');
     }
     verifyUserIsOnLoginPage(){
         this.emailInputField().should('be.visible');
