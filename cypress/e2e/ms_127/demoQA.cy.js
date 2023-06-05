@@ -2,7 +2,7 @@
 
 describe("Testing DemoQA", () => {
 
-  it.skip("Elements - testing text box", () => {
+  it("Elements - testing text box", () => {
     cy.visit("https://demoqa.com/");
 
     cy.get(':nth-child(1) > :nth-child(1) > .card-up').click();
@@ -10,17 +10,17 @@ describe("Testing DemoQA", () => {
 
     cy.get('.main-header').should('have.text', 'Text Box');
 
-    cy.wait(2000);
+    cy.wait(4000);
     cy.get('#userName-label').should('have.text', 'Full Name');
     cy.get('#userEmail-label').should('have.text', 'Email');
 
-    cy.get('#userName').type('Nikola Nikic');
-    cy.get('#userEmail').type('nikola@email.com');
-     cy.get('#currentAddress').type('Srete Mladenovica bb');
-     cy.get('#permanentAffress').type('Srete Karabatica 88');
+    cy.get('#userName').type('Mihajlo Stokic');
+    cy.get('#userEmail').type('mstokic@gmail.com');
+     cy.get('#currentAddress').type('Vuka Karadzica bb');
+     cy.get('#permanentAddress').type('Vuka Karadzica 19');
   });
 
-  it("Elements - testing radio button", () => {
+  it.skip("Elements - testing radio button", () => {
     cy.visit("https://demoqa.com/");
 
     cy.get(':nth-child(1) > :nth-child(1) > .card-up').click();
