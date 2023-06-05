@@ -4,12 +4,14 @@
   "description": "Testiranje Softvera",
   "main": "cypress.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:run:jb_024/2020":"cypress run --spec ./cypress/e2e/demoblaze.cy.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nikolanikic/VTS-TestiranjeSoftvera2023.git"
   },
+  
   "author": "NN",
   "license": "ISC",
   "bugs": {
