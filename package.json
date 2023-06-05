@@ -16,7 +16,15 @@
     "url": "https://github.com/nikolanikic/VTS-TestiranjeSoftvera2023/issues"
   },
   "homepage": "https://github.com/nikolanikic/VTS-TestiranjeSoftvera2023#readme",
-  "devDependencies": {
+  "dependencies": {
     "cypress": "^12.10.0"
+  },
+  "devDependencies": {
+    "cypress-cucumber-preprocessor": "^4.3.1"
+  },
+  "cypress-cucumber-preprocessor":{
+    "nonGlobalStepDefinitions": true,
+    "stepDefinitions": "./cypress/e2e/"
   }
+  
 }
