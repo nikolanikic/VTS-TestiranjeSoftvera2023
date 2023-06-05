@@ -1,4 +1,43 @@
 class Homepage {
+    clickSuiteButton(){
+        return cy.get('#create-suite-button');
+    }
+    suiteName(){
+        return cy.get('#title');
+    }
+    suiteDescription(){
+        return cy.get(':nth-child(3) > .AgTkYj');
+    }
+    suitePreconditions(){
+        return cy.get(':nth-child(4) > .AgTkYj');
+    }
+    createSuiteButton(){
+        return cy.get('.CCVJRT > .u0i1tV');
+    }
+    clickCaseButton(){
+        return cy.get('#create-case-button');
+    }
+    caseTitle(){
+        return cy.get('#title');
+    }
+
+    // caseStatus(){
+    //     return cy.get('.mt-4 > .col-xl-4 > .Thgbhj > ._ZTmUa');
+    // }
+   caseDescription(){
+    return cy.get('.col-12 > .AgTkYj');
+   }
+   caseSave(){
+    return cy.get('#save-case');
+   }
+   suiteCaseVerify(){
+    return cy.get('.o0Jd8j');
+   }
+
+
+    openProjectLink(){
+        return cy.get(':nth-child(2) > :nth-child(3) > :nth-child(1) > .defect-title');
+    }
 
 
     projectsLink() {
@@ -55,6 +94,33 @@ class Homepage {
         this.dotsForProject().click();
         this.deleteButton().click();
         this.deleteProjectButton().click();
+    }
+    verifyProjectIsDeletedByName(projectName){
+        cy.contains(projectName).should('not.exist');
+    }
+
+    openProject(){
+        this.openProjectLink().click();
+    }
+    populateSuite(){
+        this.clickSuiteButton().click();
+        this.suiteName().type('SuiteTest');
+        this.suiteDescription().type('AA038');
+        this.suitePreconditions().type('VTS');
+        this.createSuiteButton().click();
+
+    }
+    populateCase(){
+        this.clickCaseButton().click();
+        this.caseTitle().type('CASE_VTS');
+        // this.caseStatus().click();
+        this.caseDescription().type('TestiranjeSoftvera');
+        this.caseSave().click();
+
+    }
+    verifySuiteAndCase(){
+        this.suiteCaseVerify().should('have.text','1 suite | 1 test');
+        this.projectLink().click();
     }
 }
 
