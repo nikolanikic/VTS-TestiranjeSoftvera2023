@@ -10,6 +10,11 @@
 // what makes it such an awesome testing tool,
 // please read our getting started guide:
 // https://on.cypress.io/introduction-to-cypress
+describe("Testing DemoQA", () => {
+
+  it("this is...", () => {
+    });
+});
 
 describe("example to-do app", () => {
   beforeEach(() => {
@@ -26,6 +31,7 @@ describe("example to-do app", () => {
       "have.text",
       "Double-click to edit a todo"
     );
+    cy.get('.info > :nth-child(2)').should("have.text","Forked from TodoMVC");
   });
 
   it.skip("check that all tasks can be completed at once", () => {
