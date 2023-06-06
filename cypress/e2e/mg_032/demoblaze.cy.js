@@ -49,11 +49,11 @@ describe("Testing DemoQA", () => {
     cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click();
     cy.get('.confirm').click();
     cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-secondary').click();
-    cy.on('window:alert', (t)=>{
-         expect(t).to.contains('Product added');
-        });
-        
-});
+    cy.on('window:alert', (t) => {
+      expect(t).to.contains('Product added');
+    });
+
+  });
 
   it.skip('Check if slide is changed after click', () => {
     cy.visit('https://www.demoblaze.com/')
