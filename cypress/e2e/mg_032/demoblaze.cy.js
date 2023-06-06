@@ -1,71 +1,83 @@
 /// <reference types="cypress" />
 
-describe("Testing DemoQA", () => {
-
-  it.skip("User is abel to load Demoblaze web cite", () => {
-    cy.visit('https://www.demoblaze.com/')
-
-    cy.get('#nava').contains('PRODUCT STORE');
-    cy.get('.active > .nav-link').contains('Home');
-    cy.get('#cat').should('have.text', 'CATEGORIES');
-  });
-
-  it.skip('Alert is thrown when user already exists', () => {
-    cy.visit('https://www.demoblaze.com/')
-
-    cy.get('#signin2').click();
-
-    cy.get('#signInModalLabel').should('have.text', 'Sign up');
-    cy.get('#sign-username').type('milangov', { delay: 0 });
-    cy.get('#sign-password').type('milangov', { delay: 0 });
-
-    cy.get('#signInModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click();
-
-    cy.on('window:alert', (t) => {
-      expect(t).to.contains('This user already exists');
-    });
-  });
+import SlideShow from "../../support/pageObject/demoblaze_ms_127/SlideShow";
+import HomePage from "../../support/pageObject/demoblaze_ms_127/homePage";
+import LogInPage from "../../support/pageObject/demoblaze_ms_127/logInPage";
+import SignUpPage from "../../support/pageObject/demoblaze_ms_127/signUpPage";
 
 
-  it.skip("Adding product to cart", () => {
-    cy.visit("https://www.demoblaze.com/");
 
-    cy.get(':nth-child(3) > .card > .card-block .card-title > .hrefch').click();
-    cy.get('.name').contains('Nexus 6');
-    cy.get('.col-sm-12 > .btn').click();
+describe("Demoblaze web shop", () => {
 
-    cy.get('#cartur').click();
-    cy.get('#totalp').should('have.text', '650');
-    cy.get('.col-lg-1 > .btn').click();
+    const homePage = new HomePage();
+    const signUpPage = new SignUpPage();
+    const logInPage = new LogInPage();
+    const slideShow = new SlideShow();
 
-    cy.get('#totalm').contains('650');
-    cy.get('#name').clear().type('Milan Govedarovic');
-    cy.get('#country').clear().type('Srbija');
-    cy.get('#city').clear().type('Velika Plana');
-    cy.get('#card').clear().type('2599863516');
-    cy.get('#month').clear().type('10');
-    cy.get('#year').clear().type('22');
+    it("User is able to load Demoblaze web shop", () => {
+        cy.visit('https://www.demoblaze.com/');
 
-    cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click();
-    cy.get('.confirm').click();
-    cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-secondary').click();
-    cy.on('window:alert', (t) => {
-      expect(t).to.contains('Product added');
+        homePage.checkLogoText();
+        homePage.checkHomeButtonIsDisplayed();
+        homePage.checkCategoriesMenuIsDisplayed();
     });
 
-  });
+    it("Alert is thrown when User already exists", () => {
+        cy.visit('https://www.demoblaze.com/');
+        homePage.clickSignUpButton();
 
-  it.skip('Check if slide is changed after click', () => {
-    cy.visit('https://www.demoblaze.com/')
+        signUpPage.checkSignUpLabel();
+        signUpPage.populateAndSubmitSignUpForm();
 
-    cy.get('.active > .d-block').invoke('attr', 'alt').should('eq', 'First slide');
+        cy.on('window:alert', (t) => {
+            expect(t).to.contains('This user already exist.');
+        });
+    });
 
-    cy.get('.carousel-control-next-icon').click();
-    cy.wait(1000)
+    it('User is able to login to Demoblaze web shop', () => {
+        cy.visit('https://www.demoblaze.com/');
+        homePage.clickLogInButton();
+        logInPage.fillAndSubmitLogInForm();
 
-    cy.get('.active > .d-block').invoke('attr', 'alt').should('eq', 'Second slide');
+    });
 
 
-  });
+    it.skip("Adding product to cart", () => {
+        cy.visit("https://www.demoblaze.com/");
+
+        cy.get(':nth-child(3) > .card > .card-block .card-title > .hrefch').click();
+        cy.get('.name').contains('Nexus 6');
+        cy.get('.col-sm-12 > .btn').click();
+
+        cy.get('#cartur').click();
+        cy.get('#totalp').should('have.text', '650');
+        cy.get('.col-lg-1 > .btn').click();
+
+        cy.get('#totalm').contains('650');
+        cy.get('#name').clear().type('Mihajlo Stokic');
+        cy.get('#country').clear().type('Serbia');
+        cy.get('#city').clear().type('Pozarevac');
+        cy.get('#card').clear().type('406207052001');
+        cy.get('#month').clear().type('05');
+        cy.get('#year').clear().type('24');
+
+        cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click();
+        cy.get('.confirm').click();
+        cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-secondary').click();
+        cy.on('window:alert', (t) => {
+            expect(t).to.contains('Product added');
+        });
+
+    });
+    it("Check if slide is changed after click", () => {
+
+        cy.visit("https://www.demoblaze.com/");
+        slideShow.checkFirstSlide();
+        cy.wait(4000);
+        slideShow.checkSecondSlide();
+
+
+    });
+
 
 });
