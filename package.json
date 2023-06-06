@@ -18,5 +18,9 @@
   "homepage": "https://github.com/nikolanikic/VTS-TestiranjeSoftvera2023#readme",
   "dependencies": {
     "cypress": "^12.9.0"
+  },
+  "cypress-cucumber-preprocessor":{
+    "nonGlobalStepDefinitions": true,
+    "stepDefinitions": "./cypress/e2e/"
   }
 }
