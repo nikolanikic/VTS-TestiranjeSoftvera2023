@@ -1,1 +1,0 @@
-# VTS-TestiranjeSoftvera2023
