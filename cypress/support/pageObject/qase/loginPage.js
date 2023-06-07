@@ -1,12 +1,12 @@
 class LoginPage {
     emailInputField() {
-        return cy.get('#inputEmail');
+        return cy.get(':nth-child(1) > .NgMoob > .YDBDJ5');
     }
     passwordInputField() {
-        return cy.get('#inputPassword');
+        return cy.get(':nth-child(2) > .NgMoob > .YDBDJ5');
     }
     loginButton() {
-        return cy.get('#btnLogin');
+        return cy.get('.j4xaa7');
     }
     verifyUserIsOnLoginPage(){
         this.emailInputField().should('be.visible');
@@ -14,8 +14,8 @@ class LoginPage {
         this.loginButton().should('be.enabled');
     }
     login(){
-        this.emailInputField().type('aleksa.vlatkovic@gmail.com');
-        this.passwordInputField().type('asdfghj');
+        this.emailInputField().type('ls.044@gmail.com');
+        this.passwordInputField().type('ls0442020');
         this.loginButton().click();
     }
 
