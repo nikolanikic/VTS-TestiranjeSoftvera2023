@@ -1,4 +1,4 @@
-class newProjectPage {
+class NewProjectPage {
 
     projectNameInputField () {
         return cy.get('#project-name');
@@ -29,4 +29,4 @@ class newProjectPage {
     }
 }
 
-export default newProjectPage;
+export default NewProjectPage;
